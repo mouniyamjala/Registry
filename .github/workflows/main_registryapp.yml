@@ -54,4 +54,4 @@ jobs:
           app-name: 'RegistryApp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1A8391EE71D648D2B21C6037659163C2 }}
-          package: .
+          package: './artifact-folder'
