@@ -32,7 +32,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ./output
+          path: ${{env.DOTNET_ROOT}}/Registry.WebAPI/Registry.WebAPI.csproj
+
 
   deploy:
     runs-on: windows-latest
