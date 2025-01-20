@@ -15,6 +15,13 @@ namespace Registry.WebAPI.Controllers
             _registryService = registryService;
         }
 
+        //[HttpGet]
+        //[Route("")]
+        //public IActionResult Index()
+        //{
+        //    return Ok("Welcome to the Registry API");
+        //}
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
