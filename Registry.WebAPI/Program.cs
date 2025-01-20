@@ -5,9 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.json", optional:false, reloadOnChange: true);
 
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultString")
+                       ?? builder.Configuration.GetConnectionString("DefaultString");
+
 //DbConnection
 builder.Services.AddDbContext<RegistryDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(connectionString));
+
 
 builder.Services.AddScoped(typeof(IRegistryRepository), typeof(RegistryRepository));
 builder.Services.AddScoped<IRegistryService, RegistryService>();
