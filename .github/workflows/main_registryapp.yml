@@ -23,16 +23,16 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release Registry.sln
+        run: dotnet build --configuration Release Registry.WebAPI/Registry.WebAPI.csproj
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/Registry.sln
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/Registry.WebAPI/Registry.WebAPI.csproj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/Registry.sln
+          path: ${{env.DOTNET_ROOT}}/Registry.WebAPI/Registry.WebAPI.csproj
 
   deploy:
     runs-on: windows-latest
@@ -54,4 +54,4 @@ jobs:
           app-name: 'RegistryApp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1A8391EE71D648D2B21C6037659163C2 }}
-          package: './artifact-folder'
+          package: .
